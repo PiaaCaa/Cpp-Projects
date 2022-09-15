@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1662292762 source:d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses autumn 2022\cpp\projects\project 1\cpp project 1\main.cpp
+	<iostream>
+	<cmath>
+	"ex1.h"
+	"ex2.h"
+
+1662279350 source:d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses autumn 2022\cpp\projects\project 1\cpp project 1\ex1.cpp
+	<iostream>
+	<cmath>
+
+1662279635 source:d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses autumn 2022\cpp\projects\project 1\cpp project 1\ex2.cpp
+	<iostream>
+	<cmath>
+
+1662278561 d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses autumn 2022\cpp\projects\project 1\cpp project 1\ex1.h
+
+1662279058 d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses autumn 2022\cpp\projects\project 1\cpp project 1\ex2.h
+
+1662279635 source:d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\project 1\cpp project 1\ex2.cpp
+	<iostream>
+	<cmath>
+
+1662292762 source:d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\project 1\cpp project 1\main.cpp
+	<iostream>
+	<cmath>
+	"ex1.h"
+	"ex2.h"
+
+1662278561 d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\project 1\cpp project 1\ex1.h
+
+1662279058 d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\project 1\cpp project 1\ex2.h
+
