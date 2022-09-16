@@ -1,38 +1,28 @@
 #include <iostream>
 #include <cmath>
+#include "ex2.h"
 
 
-double f(double x){
-    return (1 + sin(exp(3*x)));
-}
-
-double I(double a, double b){
+//Use Simpsons rule to estimate Integral value
+double I(FunctionPointer f, double a, double b){
     return ((b-a)/6)*(f(a) +4*f((a+b)/2)+ f(b));
 
 }
 
-double I_2(double a, double b){
+// Use I2  to decrease error value for Integral approximation
+double I_2(FunctionPointer f, double a, double b){
     double gamma = (a+b)/2;
-    return I(a, gamma) + I(gamma,b);
+    return I(f, a, gamma) + I(f, gamma,b);
 }
 
-//TODO insert function as parameter
-double ASI(double a, double  b, double tol){
-    double I1 =  I(a, b);
-    double I2 = I_2(a, b);
+//Adaptive Simpson Estimation
+double ASI(FunctionPointer f, double a, double  b, double tol){
+    double I1 =  I(f, a, b);
+    double I2 = I_2(f, a, b);
     double errest = std::abs(I1-I2);
     if (errest < 15*tol){
         return I2;
     }
-    return ASI(a, (a+b)/2, tol/2) + ASI((a+b)/2, b, tol/2);
+    return ASI(f, a, (a+b)/2, tol/2) + ASI(f, (a+b)/2, b, tol/2);
 }
 
-
-
-//int main () {
-
-    //TODO for loop over tolerances
-    //double res = ASI(-1, 1, tol);
-    //#todo compare results to matlab function
-//    return 0;
-//}
