@@ -55,6 +55,7 @@ double cosTaylor(int N, double x)
     return 1-res;
 }
 
+
 //Prints error for the Taylor approximations of sine and cosine for different N and x
 void error()
 {
@@ -68,20 +69,24 @@ void error()
     //iterate over different x_s
     for (int j = 0; j < num_x; j++){
         std::cout << "---------------------------" << std::endl;
-        std::cout << " x=" << x_s[j] << std::endl;
+        std::cout << "For x=" << x_s[j] << ":" << std::endl;
         //iterate over number of Ns
         for (int i = 0; i< num_N; i++ ){
 
-            // Taylor error estimate
-            double error_estimate =  std::abs((1/factorial(N_s[i]+1))*(pow(x_s[j], N_s[i]+1)));
+            // Calculating the n+1 term of the sinus Taylor approximation to check if it bound the error
+            double sin_error_bound =  std::abs((1/factorial(2*N_s[i]+1))*(pow(x_s[j], 2*N_s[i]+1)));
+
+
+            // Calculating the n+1 term of the cosinus Taylor approximation to check if it bound the error
+            double cos_error_bound =  std::abs((1/factorial(2*N_s[i]))*(pow(x_s[j], 2*N_s[i])));
 
             // Calculate absolute error value
             double err_sin = std::abs(sin(x_s[j])-sinTaylor(N_s[i],x_s[j]));
             double err_cos = std::abs(cos(x_s[j])-cosTaylor(N_s[i],x_s[j]));
 
-            //Print
-            std::cout << "N=" << N_s[i] << " x=" << x_s[j] << " error sin: " << err_sin <<" estimate:"<<error_estimate << std::endl;
-            std::cout << "N=" << N_s[i] << " x=" << x_s[j] << " error cos: " << err_cos << " estimate:"<<error_estimate<< std::endl;
+            // Printing out the errors when using the Taylor approximation and the estimated error bound of the n+1 term
+            std::cout << "N=" << N_s[i] << ", x=" << x_s[j] << ",   error sin: " << err_sin << ",   n+1 term:" << sin_error_bound << std::endl;
+            std::cout << "N=" << N_s[i] << ", x=" << x_s[j] << ",   error cos: " << err_cos << ",   n+1 term:" << cos_error_bound << std::endl;
             //std::cout << " & "  <<  N_s[i] << "&" << err_sin << " & " << err_cos << " & "<<error_estimate << "\\"  <<<"\\"<< std::endl;
         }
     }

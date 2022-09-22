@@ -9,26 +9,34 @@ double func(double x){
     return (1 + sin(exp(3*x)));
 }
 
-//Main function to execute Task 1 and 2
+// Main function to execute Task 1 and 2
 int main(){
 
-    //Task 1
+    // Task 1
     std::cout<<"Executing Task 1" << std::endl;
-    //double res_sin = sinTaylor(8, 3.14/2) ;
-    //std::cout<< "result sin:" << res_sin;
-
-    //double res_cos = cosTaylor(8, 3.14/2) ;
-    //std::cout<< "result cos:" << res_cos;
 
     //estimate error
     error();
 
-    std::cout<<"Executing Task 2" << std::endl;
+    std::cout << std::endl;
+    std::cout << "--------------------------" << std::endl;
+    std::cout << std::endl;
+
+    // Task 2
+    std::cout << "Executing Task 2" << std::endl;
+    std::cout << std::endl;
+
+    // MATLAB result for integration using integral() function with absolute tolerance
+    // of 1e-8 rounded to 5 digits
+    double matlab_res = 2.50081;
+
+    std::cout << "Using MATLAB's integration method with an absolute tolerance of 1e-8 results in: " << matlab_res << std::endl;
 
     //Print Integral estimate for different tolerances
     double tol [] = {0.01, 0.001, 0.0001};
     for (int i = 0; i < 3; i++){
-        std::cout<<"tol: " << tol[i]  << " result: " << ASI(&func,-1, 1, tol[i]) <<  std::endl;
+        double asi_res =    ASI(&func,-1, 1, tol[i]);
+        std::cout<<"Tolerance: " << tol[i]  << ", ASI result: " << asi_res <<  ", Difference to MATLAB result: " << std::abs(matlab_res - asi_res)<< std::endl;
     }
 
     return 0;

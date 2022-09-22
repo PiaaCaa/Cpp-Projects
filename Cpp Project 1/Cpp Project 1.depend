@@ -51,3 +51,23 @@
 
 1663254087 d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\cpp projects\cpp project 1\ex2.h
 
+1663845796 source:d:\uni\gitkraken\cpp-projects\cpp project 1\ex1.cpp
+	<iostream>
+	<cmath>
+	"ex1.h"
+
+1663839100 d:\uni\gitkraken\cpp-projects\cpp project 1\ex1.h
+
+1663839100 source:d:\uni\gitkraken\cpp-projects\cpp project 1\ex2.cpp
+	<iostream>
+	<cmath>
+	"ex2.h"
+
+1663839100 d:\uni\gitkraken\cpp-projects\cpp project 1\ex2.h
+
+1663845586 source:d:\uni\gitkraken\cpp-projects\cpp project 1\main.cpp
+	<iostream>
+	<cmath>
+	"ex1.h"
+	"ex2.h"
+
