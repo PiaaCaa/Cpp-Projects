@@ -3,7 +3,7 @@
 #include "ex2.h"
 
 
-//Use Simpsons rule to estimate Integral value
+// Use Simpsons rule to estimate Integral value
 double I(FunctionPointer f, double a, double b){
     return ((b-a)/6)*(f(a) +4*f((a+b)/2)+ f(b));
 
@@ -15,7 +15,7 @@ double I_2(FunctionPointer f, double a, double b){
     return I(f, a, gamma) + I(f, gamma,b);
 }
 
-//Adaptive Simpson Estimation
+// Adaptive Simpson Estimation
 double ASI(FunctionPointer f, double a, double  b, double tol){
     double I1 =  I(f, a, b);
     double I2 = I_2(f, a, b);

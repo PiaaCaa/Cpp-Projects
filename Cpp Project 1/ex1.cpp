@@ -3,7 +3,7 @@
 #include "ex1.h"
 
 
-//recursive factorial evaluation for the error estimation
+// Recursive factorial evaluation for the error estimation
 double factorial(double n)
 {
     if (n == 0){
@@ -13,7 +13,7 @@ double factorial(double n)
 }
 
 
-//Taylor approximation of the sine function
+// Taylor approximation of the sine function
 double sinTaylor(int N, double x)
 {
 
@@ -21,16 +21,23 @@ double sinTaylor(int N, double x)
     if (N == 0) {
         return x;
     }
-    //initialize
+    // Initialize temporary variable
     double temp;
+
+    // Initialize current result variable res as the right part of the innermost bracket (1 - res)
     double res = (x*x)/((2*N)*(2*N+1));
 
-    //evaluate using horners scheme. Start from N and decrease
+    // Evaluate the result using horners scheme. Start from N and decrease
     for (int i=N; i > 1 ; i--){
+        // Temp values evaluates the current innermost bracket (1-res)
         temp = 1-res;
+
+        // Multiply temp value (current solution of the horner scheme so far) with the right term of the next bracket
         res =  temp*x*x/((2*i-1)*(2*i-2));
 
     }
+
+    // Multiply with x as sine Taylor approximation starts with x (see equation in documentation)
     return x*(1-res);
 }
 
@@ -42,16 +49,24 @@ double cosTaylor(int N, double x)
     if (N == 0) {
         return 1;
     }
-    //initilaize
+
+    // Initialize temporary variable
     double temp;
+
+    // Initialize current result variable res as the right part of the innermost bracket (1 - res)
     double res = x*x/((2*N)*(2*N-1));
 
-    //evaluate using horners scheme. Start from N-1 and decrease
+    // Evaluate the result using horners scheme. Start from N-1 and decrease
     for (int i=N-1; i >= 1; i--){
+        // Temp values evaluates the current innermost bracket (1-res)
         temp = 1-res;
+
+        // Multiply temp value (current solution of the horner scheme so far) with the right term of the next bracket
         res = temp*(x*x)/((2*i)*(2*i-1));
 
     }
+
+    // Return evaluation of outermost bracket (1-res)
     return 1-res;
 }
 
@@ -87,7 +102,6 @@ void error()
             // Printing out the errors when using the Taylor approximation and the estimated error bound of the n+1 term
             std::cout << "N=" << N_s[i] << ", x=" << x_s[j] << ",   error sin: " << err_sin << ",   n+1 term:" << sin_error_bound << std::endl;
             std::cout << "N=" << N_s[i] << ", x=" << x_s[j] << ",   error cos: " << err_cos << ",   n+1 term:" << cos_error_bound << std::endl;
-            //std::cout << " & "  <<  N_s[i] << "&" << err_sin << " & " << err_cos << " & "<<error_estimate << "\\"  <<<"\\"<< std::endl;
         }
     }
 }
