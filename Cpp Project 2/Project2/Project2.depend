@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1665321402 source:d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\cpp projects\cpp project 2\project2\main.cpp
+	<iostream>
+	<cmath>
+	"matrix.hpp"
+
+1665224636 source:d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\cpp projects\cpp project 2\project2\r8lib.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	<iomanip>
+	<cmath>
+	<ctime>
+	<complex>
+	<cstring>
+	"r8lib.h"
+
+1665224648 d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\cpp projects\cpp project 2\project2\r8lib.h
+
+1665156318 source:d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\cpp projects\cpp project 2\project2\r8mat_expm1.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	<iomanip>
+	<cmath>
+	<complex>
+	<ctime>
+	<cstring>
+	"r8mat_expm1.h"
+	"r8lib.h"
+
+1665156329 d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\cpp projects\cpp project 2\project2\r8mat_expm1.h
+
+1665318777 d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\cpp projects\cpp project 2\project2\matrix.hpp
+
+1665321478 source:d:\allmystuff\studium\computer_simulations_in_science_and_engineering\kth\courses_autumn_2022\cpp\projects\cpp projects\cpp project 2\project2\matrix.cpp
+	<iostream>
+	<iostream>
+	<cmath>
+	"matrix.hpp"
+
