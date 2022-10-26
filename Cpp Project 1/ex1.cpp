@@ -22,21 +22,21 @@ double sinTaylor(int N, double x)
         return x;
     }
     // Initialize temporary variable
-    double temp;
-
+    double temp;
+
     // Initialize current result variable res as the right part of the innermost bracket (1 - res)
     double res = (x*x)/((2*N)*(2*N+1));
 
     // Evaluate the result using horners scheme. Start from N and decrease
-    for (int i=N; i > 1 ; i--){
+    for (int i=N; i > 1 ; i--){
         // Temp values evaluates the current innermost bracket (1-res)
-        temp = 1-res;
-
+        temp = 1-res;
+
         // Multiply temp value (current solution of the horner scheme so far) with the right term of the next bracket
         res =  temp*x*x/((2*i-1)*(2*i-2));
 
-    }
-
+    }
+
     // Multiply with x as sine Taylor approximation starts with x (see equation in documentation)
     return x*(1-res);
 }
@@ -48,28 +48,28 @@ double cosTaylor(int N, double x)
      //check and return 1 if N = 0 to no divide through 0
     if (N == 0) {
         return 1;
-    }
+    }
 
     // Initialize temporary variable
-    double temp;
-
-    // Initialize current result variable res as the right part of the innermost bracket (1 - res)
+    double temp;
+
+    // Initialize current result variable res as the right part of the innermost bracket (1 - res)
     double res = x*x/((2*N)*(2*N-1));
 
-    // Evaluate the result using horners scheme. Start from N-1 and decrease
-    for (int i=N-1; i >= 1; i--){
-        // Temp values evaluates the current innermost bracket (1-res)
-        temp = 1-res;
-
+    // Evaluate the result using horners scheme. Start from N-1 and decrease
+    for (int i=N-1; i >= 1; i--){
+        // Temp values evaluates the current innermost bracket (1-res)
+        temp = 1-res;
+
         // Multiply temp value (current solution of the horner scheme so far) with the right term of the next bracket
         res = temp*(x*x)/((2*i)*(2*i-1));
 
-    }
-
+    }
+
     // Return evaluation of outermost bracket (1-res)
     return 1-res;
-}
-
+}
+
 
 //Prints error for the Taylor approximations of sine and cosine for different N and x
 void error()
@@ -90,10 +90,10 @@ void error()
 
             // Calculating the n+1 term of the sinus Taylor approximation to check if it bound the error
             double sin_error_bound =  std::abs((1/factorial(2*N_s[i]+1))*(pow(x_s[j], 2*N_s[i]+1)));
-
-
-            // Calculating the n+1 term of the cosinus Taylor approximation to check if it bound the error
-            double cos_error_bound =  std::abs((1/factorial(2*N_s[i]))*(pow(x_s[j], 2*N_s[i])));
+
+
+            // Calculating the n+1 term of the cosinus Taylor approximation to check if it bound the error
+            double cos_error_bound =  std::abs((1/factorial(2*N_s[i]))*(pow(x_s[j], 2*N_s[i])));
 
             // Calculate absolute error value
             double err_sin = std::abs(sin(x_s[j])-sinTaylor(N_s[i],x_s[j]));
