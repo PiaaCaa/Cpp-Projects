@@ -1,6 +1,8 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
 
+
+//header file for Matrix object
 class Matrix {
 private:
     int rows;

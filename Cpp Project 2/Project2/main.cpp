@@ -6,38 +6,39 @@ using namespace std;
 #include "r8lib.h"
 #include "r8mat_expm1.h"
 
-//approximate exponential of number
+//approximate exponential of real number
 double myexp(double x, double tol=1e-10){
-    double exp_n = 1;
-    int n = 1;
+
+    double exp_n = 1; // set first component to n=0
+    int n = 1; // This is used for displaying number of iterations used for appoximation
     double err = 10000;  // CHANGE
 
     //store previous components to avoid computational expense
     double prev_val = exp_n;
-    double sum_comp;
 
-    //DISCUSSION: how do you measure accuracy?
-    // DO THIS: Or does this mean the difference between the summands?
+    //iterate until tolerance is reached
     while (err > tol) {
-        //exp_n += pow(x, n)/factorial(n);
 
-        sum_comp = (prev_val*x)/n;
-        prev_val = sum_comp;
+        //calculate next summand n by using previous summand (n-1)
+        prev_val = (prev_val*x)/n;
 
-        exp_n += sum_comp;
+        //add new component to approximation series
+        exp_n += prev_val;
 
-        //measure accuracy like this?
-        // CHANGE
-        err = abs(exp_n- exp(x));
+        // Measure error by measuring absolute difference between the approximated exponentials between iterations
+        //this is the absolute value of the last summand added to the series
+        err = abs(prev_val);
         n +=1 ;
     }
-    cout << "number of iterations used: " << n<< endl;
+    cout << "number of iterations used: " << n << " with tolerance: " << tol<<endl;
     return exp_n;
 }
 
 
-
+// Compute matrix exponential with series up to a given tolerance
 Matrix matexp(Matrix& M, double tol=1e-10){
+
+    //first exponential component is the identity matrix
     Matrix exp_n = Matrix(M.Cols());
     exp_n.fillNumber(0);
     exp_n.fillDiagonal(1);
@@ -46,31 +47,20 @@ Matrix matexp(Matrix& M, double tol=1e-10){
 
     //store previous components to avoid computational expense
     Matrix prev_val = exp_n;
-    // Matrix sum_comp(M.Cols());
 
-    //DISCUSSION: how do you measure accuracy?
-    // DO THIS: Or does this mean the difference between the summands?
+     // iterate until tolerance is reached
     while (err > tol) {
-        //exp_n += pow(x, n)/factorial(n);
 
+        //compute next summand n with previous summand n-1
         prev_val *= M;
         prev_val *= 1.0/n;
 
-        cout << "Prev_val: " << endl;
-        prev_val.printMatrix();
-
-        Matrix exp_n_old =exp_n;
+        //update series by new summand
         exp_n += prev_val;
 
-        exp_n_old *= (-1);
-        exp_n_old += exp_n;
-
-        cout << "Difference: " << endl;
-        exp_n_old.printMatrix();
-
-        err = exp_n_old.maxnorm();
-        cout << "Maximumsnorm: " << err << endl;
-        // Maximumsnorm der Differenz beider Matrizen
+        //The error is here defined as the maximal difference between elements of new and old calculated matrix exponential approximations
+        // this is the maximal value of the last summand added to the series
+        err = prev_val.maxnorm();
         n +=1.0 ;
     }
     cout << "number of iterations used: " << n<< endl;
@@ -79,11 +69,12 @@ Matrix matexp(Matrix& M, double tol=1e-10){
 }
 
 
-
 int main(){
 
     cout << "Executing Task 1" <<endl ;
     double res = myexp(2.0);
+    for(int i= -5; i<10; i++)
+        cout << "res: " << myexp((double) i) << endl;
 
     // Compare with exp function
 
@@ -117,7 +108,7 @@ int main(){
 
     cout << "A norm:"<< A.maxnorm() << endl;
     double a[]  = {1.0,2.0,3.0,4.0, 5.0};
-    double b[]  = {1,0,0,1};
+    double b[]  = {1,-1,-1,1};
 
     A.fillMatrix(a);
     B.fillMatrix(b);
@@ -145,5 +136,6 @@ int main(){
     checkmat.fillMatrix(checkres);
     cout << "Given result: " << endl;
     checkmat.printMatrix();
+
  return 0;
 }

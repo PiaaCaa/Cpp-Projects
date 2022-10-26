@@ -32,12 +32,12 @@ Matrix::Matrix(const Matrix& M){
     //build new matrix
     matx = new double*[rows];
 
+    // loop over each element
     for (int i = 0 ; i< rows ; i++){
         // allocate the memory
         matx[i] = new double[cols];
         for(int j = 0 ; j < cols ; j++)
-            // Copy values
-            matx[i][j] = M.Matx()[i][j];
+            matx[i][j] = M.Matx()[i][j]; // Copy values
     }
 }
 
@@ -45,7 +45,6 @@ Matrix::Matrix(const Matrix& M){
 //Overrule copy operator
 // DISCUSSION: how shoulds thi soperate do we want a new object with same elements or does it really should bee the same?
 // Lecture: The value returned should be (a reference to) the rightmost expression.
-//TODO check whether bjects have same dimensions!!
 Matrix& Matrix::operator=(const Matrix& M){
     if (this != &M){
         if (rows != M.Rows() || cols !=M.Cols() )
@@ -54,9 +53,8 @@ Matrix& Matrix::operator=(const Matrix& M){
         //TODO this is very inefficient?? Since constrcuot does the same job! e.g. //Matrix(M);
         rows = M.Rows();
         cols = M.Cols();
-        //matx = M.Matx(); // check if this is correct! // I think this is not correct!!! since the pointer should point somewhere else but take over the same values
 
-        //DISCUSSION: DO we also need a desctructor here for previous matx?
+        //DISCUSSION: DO we also need a destructor here for previous matx?
 
         matx = new double*[rows];
         for (int i = 0 ; i< rows ; i++){
@@ -79,7 +77,7 @@ Matrix& Matrix::operator+=(const Matrix& M ){
          // loop over each element
         for (int i = 0 ; i< rows ; i++){
             for(int j = 0 ; j < cols ; j++)
-                matx[i][j] += M.Matx()[i][j];
+                matx[i][j] += M.Matx()[i][j]; // addition elementwise
         }
     } else
         cout << " ERROR += : The matrix shapes do not match for addition! Left Matrix " << rows  << " x " << cols << " Right matrix " << M.Rows() <<" x "<< M.Cols() << endl;
@@ -136,7 +134,7 @@ Matrix& Matrix::operator*=(const double a ){
          // loop over each element
         for (int i = 0 ; i< rows ; i++){
             for(int j = 0 ; j < cols ; j++)
-                matx[i][j] *= a; // multply elementwise
+                matx[i][j] *= a; // multiply elementwise
         }
     return *this;
 }
@@ -151,8 +149,6 @@ void Matrix::printMatrix() const{
     }
 }
 
-//TODO welche Matrix norm soll gewählt werden?
-// habe p-norm , p=2 gewählt aber bissl unsicher
 //implememting the 2 norm, i.e. sum over all elements, take the square elementwise and take the root of the sum
 double Matrix::p2norm() const{
     double res = 0;
@@ -164,7 +160,7 @@ double Matrix::p2norm() const{
     return res;
 }
 
-
+//Maximumsnorm returns the absolute largest value und the matrix
 double Matrix::maxnorm() const{
     double current_max = -1.0;
      for (int i = 0 ; i< rows ; i++){
@@ -190,7 +186,7 @@ void Matrix::fillMatrix(double a[]){
 }
 
 
-//Function, which fills all elements of the matrix with the same number a
+//Function, which fills all elements of the matrix with the same double a
 void Matrix::fillNumber(double a){
     for (int i= 0 ; i< rows ; i++){
         for(int j = 0 ; j < cols ; j++)
@@ -198,8 +194,10 @@ void Matrix::fillNumber(double a){
     }
 }
 
+// Fill diagonal of matrix
 void Matrix::fillDiagonal(double a){
     int smallersize;
+    //if nonsquare matrix find min(rows, cols)
     if(rows < cols){
         smallersize = rows;
     }
@@ -208,6 +206,6 @@ void Matrix::fillDiagonal(double a){
     }
 
     for (int i= 0 ; i< smallersize ; i++){
-        matx[i][i]= a;
+        matx[i][i]= a; // fill diagonal
     }
 }
