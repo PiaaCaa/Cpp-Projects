@@ -23,10 +23,12 @@ public:
     double** Matx() const {return matx;};
 
     //Member functions
-    double norm() const;
+    double p2norm() const;
+    double maxnorm() const;
     void printMatrix() const;
     void fillMatrix(double *);
     void fillNumber(double ); // added by me
+    void fillDiagonal(double);
 };
 #endif
 

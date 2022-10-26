@@ -154,7 +154,7 @@ void Matrix::printMatrix() const{
 //TODO welche Matrix norm soll gewählt werden?
 // habe p-norm , p=2 gewählt aber bissl unsicher
 //implememting the 2 norm, i.e. sum over all elements, take the square elementwise and take the root of the sum
-double Matrix::norm() const{
+double Matrix::p2norm() const{
     double res = 0;
      for (int i = 0 ; i< rows ; i++){
             for(int j = 0 ; j < cols ; j++)
@@ -163,14 +163,28 @@ double Matrix::norm() const{
     res = sqrt(res);
     return res;
 }
+
+
+double Matrix::maxnorm() const{
+    double current_max = -1.0;
+     for (int i = 0 ; i< rows ; i++){
+            for(int j = 0 ; j < cols ; j++)
+                if (abs(matx[i][j]) > current_max){
+                    current_max = abs(matx[i][j]);
+                }
+    }
+    return current_max;
+}
+
+
 //Function, which fills all elements with the vector of length n*m columnwise
 void Matrix::fillMatrix(double a[]){
     int length_a = sizeof(a)/sizeof(a[0]);
-    if ( rows *cols== rows*cols){ // TODO change back!
-    for (int i= 0 ; i< rows ; i++){
-        for(int j = 0 ; j < cols ; j++)
-            matx[i][j]= a[j*cols+i];
-    }
+    if ( rows *cols== rows*cols){ // TODO change back! // Check if length of a fits into matrix
+        for (int i= 0 ; i< rows ; i++){
+            for(int j = 0 ; j < cols ; j++)
+                matx[i][j]= a[j*cols+i];
+        }
     } else
      cout << "ERROR FILLMATRIX: The length of the array does not match the matrix shape: " << rows << " x " << cols << " Got shape: " << length_a << " Expected: " << rows*cols  << endl;
 }
@@ -184,3 +198,16 @@ void Matrix::fillNumber(double a){
     }
 }
 
+void Matrix::fillDiagonal(double a){
+    int smallersize;
+    if(rows < cols){
+        smallersize = rows;
+    }
+    else {
+        smallersize = cols;
+    }
+
+    for (int i= 0 ; i< smallersize ; i++){
+        matx[i][i]= a;
+    }
+}

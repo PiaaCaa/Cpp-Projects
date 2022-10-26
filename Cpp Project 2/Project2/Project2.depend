@@ -39,3 +39,43 @@
 	<cmath>
 	"matrix.hpp"
 
+1666708338 source:d:\uni\gitkraken\cpp-projects\cpp project 2\project2\r8lib.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	<iomanip>
+	<cmath>
+	<ctime>
+	<complex>
+	<cstring>
+	"r8lib.h"
+
+1666708338 d:\uni\gitkraken\cpp-projects\cpp project 2\project2\r8lib.h
+
+1666708338 source:d:\uni\gitkraken\cpp-projects\cpp project 2\project2\r8mat_expm1.cpp
+	<cstdlib>
+	<iostream>
+	<fstream>
+	<iomanip>
+	<cmath>
+	<complex>
+	<ctime>
+	<cstring>
+	"r8mat_expm1.h"
+	"r8lib.h"
+
+1666708338 d:\uni\gitkraken\cpp-projects\cpp project 2\project2\r8mat_expm1.h
+
+1666714766 source:d:\uni\gitkraken\cpp-projects\cpp project 2\project2\main.cpp
+	<iostream>
+	<cmath>
+	"matrix.hpp"
+
+1666714636 d:\uni\gitkraken\cpp-projects\cpp project 2\project2\matrix.hpp
+
+1666714818 source:d:\uni\gitkraken\cpp-projects\cpp project 2\project2\matrix.cpp
+	<iostream>
+	<iostream>
+	<cmath>
+	"matrix.hpp"
+

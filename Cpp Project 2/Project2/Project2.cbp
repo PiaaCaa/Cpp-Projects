@@ -31,6 +31,13 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="main.cpp" />
+		<Unit filename="matrix.cpp" />
+		<Unit filename="matrix.hpp" />
+		<Unit filename="r8lib.cpp" />
+		<Unit filename="r8lib.h" />
+		<Unit filename="r8mat_expm1.cpp" />
+		<Unit filename="r8mat_expm1.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
