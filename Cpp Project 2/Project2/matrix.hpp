@@ -2,16 +2,17 @@
 #define MATRIX_HPP
 
 
-//header file for Matrix object
+// Header file for Matrix object
 class Matrix {
 private:
     int rows;
-    int cols; // if square matrix not necessary, but with this the class could be extended non square matrices
+    int cols;
     double **matx;
 public:
     //Constructors
-    Matrix(int m);
-    Matrix(const Matrix&);
+    Matrix(int m); // Creates mxm Matrix with all entries 0
+    Matrix(int m, double* a, int arraySize); // Creates mxm Matrix with values given by vector a with size arraySize
+    Matrix(const Matrix&); // Copy constructor
 
     // Destructor
     ~Matrix();
@@ -23,7 +24,7 @@ public:
     Matrix& operator*=(const double);
 
     //Getter (member) functions
-    int Rows() const {return rows;}; // const indicates that the object will not change its state when the attribute is used
+    int Rows() const {return rows;};
     int Cols() const {return cols;};
     double** Matx() const {return matx;};
 
@@ -32,7 +33,7 @@ public:
     double maxnorm() const;
     void printMatrix() const;
     void fillMatrix(double *, int);
-    void fillNumber(double ); // added by me
+    void fillNumber(double );
     void fillDiagonal(double);
 };
 #endif

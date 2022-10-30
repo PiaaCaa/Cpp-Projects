@@ -11,28 +11,27 @@ using namespace std;
 double myexp(double x, double tol=1e-10){
 
     double exp_n = 1; // set first component to n=0
-    int n = 1; // This is used for displaying number of iterations used for appoximation
-    double err = tol*2;
+    int n = 1; // This is used for displaying number of iterations used for approximation
+    double err = tol*2; // Set error larger than tolerance to ensure at least one summand of the approximation
 
-    //store previous components to avoid computational expense
+    // Store previous components to avoid computational expense
     double prev_val = exp_n;
 
-    //iterate until tolerance is reached
+    // Iterate until tolerance is reached
     while (err > tol) {
 
-        //calculate next summand n by using previous summand (n-1)
+        // Calculate next summand n by using previous summand (n-1)
         prev_val = (prev_val*x)/n;
 
-        //add new component to approximation series
+        // Add new component to approximation series
         exp_n += prev_val;
 
         if (isinf(exp_n)){
-            cout << "inf broken!" << endl;
             break;
         }
 
         // Measure error by measuring absolute difference between the approximated exponentials between iterations
-        //this is the absolute value of the last summand added to the series
+        // this is the absolute value of the last summand added to the series
         err = abs(prev_val);
         n +=1 ;
     }
@@ -44,7 +43,7 @@ double myexp(double x, double tol=1e-10){
 // Compute matrix exponential with series up to a given tolerance
 Matrix matexp(Matrix& M, double tol=1e-10){
 
-    //first exponential component is the identity matrix
+    // First exponential component is the identity matrix
     Matrix exp_n = Matrix(M.Cols());
     exp_n.fillNumber(0);
     exp_n.fillDiagonal(1);
@@ -52,20 +51,20 @@ Matrix matexp(Matrix& M, double tol=1e-10){
     double err = tol*2;
 
 
-    //store previous components to avoid computational expense
+    // Store previous components to avoid computational expense
     Matrix prev_val = exp_n;
 
-     // iterate until tolerance is reached
+     // Iterate until tolerance is reached
     while (err > tol) {
 
-        //compute next summand n with previous summand n-1
+        // Compute next summand n with previous summand n-1
         prev_val *= M;
         prev_val *= 1.0/n;
 
-        //update series by new summand
+        // Update series by new summand
         exp_n += prev_val;
 
-        //The error is here defined as the maximal difference between elements of new and old calculated matrix exponential approximations
+        // The error is here defined as the maximal difference between elements of new and old calculated matrix exponential approximations
         // this is the maximal value of the last summand added to the series
         err = prev_val.maxnorm();
 
@@ -102,11 +101,6 @@ int main(){
     cout << endl << endl << endl << "----------------------" << endl << endl << endl;
 
     // Building Test Matrices
-    Matrix T1 = Matrix(3);
-    Matrix T2 = Matrix(2);
-    Matrix T3 = Matrix(7);
-    Matrix T4 = Matrix(5);
-    Matrix T5 = Matrix(4);
 
     // Taking exemplary values
     double v1[9] = {1.3,2.4,6.7,-4.2,4.78,12,9.81,0.0,1.0};
@@ -132,16 +126,23 @@ int main(){
          v5[i] = (((double)(rand() % 1000)) / 100) - 5;
     }
 
-    // Filling matrices
-    T1.fillMatrix(v1, (sizeof(v1) / sizeof(*v1)));
-    T2.fillMatrix(v2, (sizeof(v2) / sizeof(*v2)));
-    T3.fillMatrix(v3, (sizeof(v3) / sizeof(*v3)));
-    T4.fillMatrix(v4, (sizeof(v4) / sizeof(*v4)));
-    T5.fillMatrix(v5, (sizeof(v5) / sizeof(*v5)));
+    // Matrix with random numbers between -25 and 0 with decimals
+    double v6[16];
+    for (int i=0;i<16;i++){
+         v6[i] = -(((double)(rand() % 2500)) / 100);
+    }
 
-    Matrix matrices[5]= {T1,T2,T3,T4,T5};
-    double* vectors[5] = {v1,v2,v3,v4,v5};
-    int sizes[5] = {9,4,49,25,16};
+    // Creating and filling matrices
+    Matrix T1 = Matrix(3, v1, (sizeof(v1) / sizeof(*v1)));
+    Matrix T2 = Matrix(2, v2, (sizeof(v2) / sizeof(*v2)));
+    Matrix T3 = Matrix(7, v3, (sizeof(v3) / sizeof(*v3)));
+    Matrix T4 = Matrix(5, v4, (sizeof(v4) / sizeof(*v4)));
+    Matrix T5 = Matrix(4, v5, (sizeof(v5) / sizeof(*v5)));
+    Matrix T6 = Matrix(4, v6, (sizeof(v6) / sizeof(*v6)));
+
+    Matrix matrices[6]= {T1,T2,T3,T4,T5,T6};
+    double* vectors[6] = {v1,v2,v3,v4,v5,v6};
+    int sizes[6] = {9,4,49,25,16,16};
 
 
     for (int i = 0; i < (sizeof(matrices) / sizeof(*matrices)); i++){

@@ -11,21 +11,41 @@ Matrix::Matrix(int m){
     rows = m;
     cols = m;
 
-    //Allocate new Memory
-    // TODO do we need to use calloc?
-    // TODO also deallocate the array!!
+    // Allocate new Memory
     matx = new double*[rows];
-    for(int i = 0; i < rows; i++)
+    for(int i = 0; i < rows; i++){
         matx[i] = new double[cols];
+        for(int j = 0 ; j < cols ; j++){
+            matx[i][j] = 0; // Assume 0 Matrix as initial value
+        }
+    }
+
 }
 
-//Copy constructor, construct similar matrix with same attributes as given matrix M
+// Constructor for a square matrix with dimensions m x m and values given by vector a
+Matrix::Matrix(int m, double* a, int arraySize){
+    if(m*m == arraySize){
+        rows = m;
+        cols = m;
+
+        // Fill Matrix with a
+        matx = new double*[rows];
+        for(int i = 0; i < rows; i++){
+            matx[i] = new double[cols];
+            for(int j = 0 ; j < cols ; j++){
+                matx[i][j]= a[j*cols+i];
+            }
+        }
+    } else cout << "ERROR Matrix Constructor: Dimension of a does not fit into Matrix with size: " << m << "x" << m << endl;
+}
+
+
+// Copy constructor, construct similar matrix with same attributes as given matrix M
 Matrix::Matrix(const Matrix& M){
 
     //take over the attributes
     rows = M.Rows();
     cols = M.Cols();
-    //matx = M.Matx(); DISCUSSION: // check if this is correct! // I think this is not correct!!! since the pointer should point somewhere else but take over the same values
 
     //build new matrix
     matx = new double*[rows];
@@ -52,7 +72,6 @@ Matrix::~Matrix() {
 //Overrule copy operator
 Matrix& Matrix::operator=(const Matrix& M){
     if (this != &M){
-
         // Create new Matrix with the number of rows and coloums being the same as M
         rows = M.Rows();
         cols = M.Cols();
@@ -77,7 +96,7 @@ Matrix& Matrix::operator+=(const Matrix& M ){
          // loop over each element
         for (int i = 0 ; i< rows ; i++){
             for(int j = 0 ; j < cols ; j++)
-                matx[i][j] += M.Matx()[i][j]; // addition elementwise
+                matx[i][j] += M.Matx()[i][j]; // addition element-wise
         }
     } else
         cout << " ERROR += : The matrix shapes do not match for addition! Left Matrix " << rows  << " x " << cols << " Right matrix " << M.Rows() <<" x "<< M.Cols() << endl;
@@ -89,13 +108,12 @@ Matrix& Matrix::operator+=(const Matrix& M ){
 Matrix& Matrix::operator*=(const Matrix& M ){
     if (cols == M.Rows()){
 
-        //TODO creating a new matrix is very inefficient!! Solve this?
         double ** lmatx = new double*[rows];
 
         // Copy Matrix
         lmatx = matx;
 
-        //create resulting matrix of size: rows x M.Cols()
+        // Create resulting matrix of size: rows x M.Cols()
         matx = new double*[rows];
         for(int i = 0 ; i < M.Cols() ; i++){
             matx[i] = new double[M.Cols()];
@@ -121,13 +139,13 @@ Matrix& Matrix::operator*=(const Matrix& M ){
 
 }
 
-//Overload operator *= To multiply matrix with scalar value
+// Overload operator *= To multiply matrix with scalar value
 Matrix& Matrix::operator*=(const double a ){
 
          // loop over each element
         for (int i = 0 ; i< rows ; i++){
             for(int j = 0 ; j < cols ; j++)
-                matx[i][j] *= a; // multiply elementwise
+                matx[i][j] *= a; // multiply element-wise
         }
     return *this;
 }
@@ -172,7 +190,7 @@ double Matrix::maxnorm() const{
 }
 
 
-// Function, which fills all elements with the vector of length n*m column-wise
+// Function which fills all elements with the vector a of length n*m column-wise
 void Matrix::fillMatrix(double *a, int arraySize){
 
     // Check if dimension align
@@ -188,7 +206,7 @@ void Matrix::fillMatrix(double *a, int arraySize){
 }
 
 
-// Function, which fills all elements of the matrix with the same double a
+// Function which fills all elements of the matrix with the same double a
 void Matrix::fillNumber(double a){
     for (int i= 0 ; i< rows ; i++){
         for(int j = 0 ; j < cols ; j++)
@@ -199,7 +217,7 @@ void Matrix::fillNumber(double a){
 // Fill diagonal of matrix with value a
 void Matrix::fillDiagonal(double a){
     int smallersize;
-    //if nonsquare matrix find min(rows, cols)
+    // if non-square matrix find min(rows, cols)
     if(rows < cols){
         smallersize = rows;
     }
