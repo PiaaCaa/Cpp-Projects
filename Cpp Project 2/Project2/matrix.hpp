@@ -13,6 +13,9 @@ public:
     Matrix(int m);
     Matrix(const Matrix&);
 
+    // Destructor
+    ~Matrix();
+
     //Operation overloading
     Matrix& operator=(const Matrix&);
     Matrix& operator+=(const Matrix&);
@@ -28,7 +31,7 @@ public:
     double p2norm() const;
     double maxnorm() const;
     void printMatrix() const;
-    void fillMatrix(double *);
+    void fillMatrix(double *, int);
     void fillNumber(double ); // added by me
     void fillDiagonal(double);
 };

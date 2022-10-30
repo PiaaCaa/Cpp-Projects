@@ -5,13 +5,11 @@
 #include "matrix.hpp"
 using namespace std;
 
-//TODO destructor!!
 
-//Constructor for square matrix nxn given size n
+//Constructor for a square matrix with dimensions m x m
 Matrix::Matrix(int m){
     rows = m;
     cols = m;
-    //matx = new double [rows][cols];
 
     //Allocate new Memory
     // TODO do we need to use calloc?
@@ -21,7 +19,7 @@ Matrix::Matrix(int m){
         matx[i] = new double[cols];
 }
 
-//Construct similar matrix with same attributes as given matrix M
+//Copy constructor, construct similar matrix with same attributes as given matrix M
 Matrix::Matrix(const Matrix& M){
 
     //take over the attributes
@@ -42,23 +40,26 @@ Matrix::Matrix(const Matrix& M){
 }
 
 
+// Destructor for the matrix
+Matrix::~Matrix() {
+    for (int i = 0; i < rows; i++) {
+        delete[] matx[i];
+    }
+        delete[] matx;
+}
+
+
 //Overrule copy operator
-// DISCUSSION: how shoulds thi soperate do we want a new object with same elements or does it really should bee the same?
-// Lecture: The value returned should be (a reference to) the rightmost expression.
 Matrix& Matrix::operator=(const Matrix& M){
     if (this != &M){
-        if (rows != M.Rows() || cols !=M.Cols() )
-            cout << "The Matrix dimensions do not match. Previous shape: " << rows << "x" << cols << " New shape: " << rows << "x" << cols << endl;
 
-        //TODO this is very inefficient?? Since constrcuot does the same job! e.g. //Matrix(M);
+        // Create new Matrix with the number of rows and coloums being the same as M
         rows = M.Rows();
         cols = M.Cols();
-
-        //DISCUSSION: DO we also need a destructor here for previous matx?
-
         matx = new double*[rows];
+
+        // Filling the values
         for (int i = 0 ; i< rows ; i++){
-            // allocate memory
             matx[i] = new double[cols];
 
             for(int j = 0 ; j < cols ; j++)
@@ -67,7 +68,6 @@ Matrix& Matrix::operator=(const Matrix& M){
             }
         }
     return *this; // dereferencing
-    // Lecture: For consistency with the built-in types, it should be a reference to the left-hand operand.
 }
 
 //Overload operator +=
@@ -89,18 +89,11 @@ Matrix& Matrix::operator+=(const Matrix& M ){
 Matrix& Matrix::operator*=(const Matrix& M ){
     if (cols == M.Rows()){
 
-        //copy previous matrix:
-        //Matrix lmatx = Matrix(rows); // Does not work??
-
         //TODO creating a new matrix is very inefficient!! Solve this?
         double ** lmatx = new double*[rows];
-        for (int i = 0 ; i< rows ; i++){
-            // allocate the memory
-            lmatx[i] = new double[cols];
-            for(int j = 0 ; j < cols ; j++)
-                lmatx[i][j] = matx[i][j];
-        }
-        // TODO delete afterwards!
+
+        // Copy Matrix
+        lmatx = matx;
 
         //create resulting matrix of size: rows x M.Cols()
         matx = new double*[rows];
@@ -143,50 +136,59 @@ Matrix& Matrix::operator*=(const double a ){
 // Member function to print matrix:
 void Matrix::printMatrix() const{
   for (int i = 0 ; i< rows ; i++){
-    for(int j = 0 ; j < cols ; j++)
+    cout << "|";
+    for(int j = 0 ; j < cols-1 ; j++)
         cout << matx[i][j] << ", " ;
-    cout << endl ;
+    cout << matx[i][cols-1] << "|" << endl ;
     }
 }
 
-//implememting the 2 norm, i.e. sum over all elements, take the square elementwise and take the root of the sum
+// Implementing the 2 norm, i.e. sum over all elements, take the square element-wise and take the root of the sum
 double Matrix::p2norm() const{
     double res = 0;
      for (int i = 0 ; i< rows ; i++){
             for(int j = 0 ; j < cols ; j++)
+                // Add square of each element
                 res += matx[i][j]*matx[i][j];
     }
+    // Take the root
     res = sqrt(res);
     return res;
 }
 
-//Maximumsnorm returns the absolute largest value und the matrix
+//Maximum norm returns the absolute largest value of the matrix
 double Matrix::maxnorm() const{
+    // Initialize max value
     double current_max = -1.0;
-     for (int i = 0 ; i< rows ; i++){
-            for(int j = 0 ; j < cols ; j++)
-                if (abs(matx[i][j]) > current_max){
-                    current_max = abs(matx[i][j]);
-                }
+    for (int i = 0 ; i< rows ; i++){
+        for(int j = 0 ; j < cols ; j++){
+            // Update if absolute value is larger
+            if (abs(matx[i][j]) > current_max){
+                current_max = abs(matx[i][j]);
+            }
+        }
     }
     return current_max;
 }
 
 
-//Function, which fills all elements with the vector of length n*m columnwise
-void Matrix::fillMatrix(double a[]){
-    int length_a = sizeof(a)/sizeof(a[0]);
-    if ( rows *cols== rows*cols){ // TODO change back! // Check if length of a fits into matrix
+// Function, which fills all elements with the vector of length n*m column-wise
+void Matrix::fillMatrix(double *a, int arraySize){
+
+    // Check if dimension align
+    if ( rows*cols == arraySize ) {
         for (int i= 0 ; i< rows ; i++){
             for(int j = 0 ; j < cols ; j++)
+                // Fill value with value given by the vector
                 matx[i][j]= a[j*cols+i];
         }
     } else
-     cout << "ERROR FILLMATRIX: The length of the array does not match the matrix shape: " << rows << " x " << cols << " Got shape: " << length_a << " Expected: " << rows*cols  << endl;
+
+     cout << "ERROR FILLMATRIX: The length of the array does not match the matrix shape: " << rows << " x " << cols << " Got shape: " << a << " Expected: " << rows*cols  << endl;
 }
 
 
-//Function, which fills all elements of the matrix with the same double a
+// Function, which fills all elements of the matrix with the same double a
 void Matrix::fillNumber(double a){
     for (int i= 0 ; i< rows ; i++){
         for(int j = 0 ; j < cols ; j++)
@@ -194,7 +196,7 @@ void Matrix::fillNumber(double a){
     }
 }
 
-// Fill diagonal of matrix
+// Fill diagonal of matrix with value a
 void Matrix::fillDiagonal(double a){
     int smallersize;
     //if nonsquare matrix find min(rows, cols)
