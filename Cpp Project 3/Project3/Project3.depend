@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1667566426 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\main.cpp
+	<iostream>
+	"curvebase.hpp"
+	"xVertical.hpp"
+	"yHorizontal.hpp"
+
+1667565524 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.hpp
+
+1667565550 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+
+1667561006 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\xvertical.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+	"xVertical.hpp"
+
+1667563924 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\xvertical.hpp
+	"curvebase.hpp"
+
+1667555876 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+
+1667566210 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\yhorizontal.hpp
+	"curvebase.hpp"
+

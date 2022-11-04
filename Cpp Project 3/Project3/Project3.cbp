@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -35,6 +37,12 @@
 		<Unit filename="curvebase.cpp" />
 		<Unit filename="curvebase.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="nonconstcurve.cpp" />
+		<Unit filename="nonconstcurve.hpp" />
+		<Unit filename="xvertical.cpp" />
+		<Unit filename="xvertical.hpp" />
+		<Unit filename="yhorizontal.cpp" />
+		<Unit filename="yhorizontal.hpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
