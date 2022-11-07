@@ -36,6 +36,8 @@
 		</Compiler>
 		<Unit filename="curvebase.cpp" />
 		<Unit filename="curvebase.hpp" />
+		<Unit filename="domain.cpp" />
+		<Unit filename="domain.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="nonconstcurve.cpp" />
 		<Unit filename="nonconstcurve.hpp" />

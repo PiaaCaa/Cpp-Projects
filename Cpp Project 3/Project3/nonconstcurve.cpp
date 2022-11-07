@@ -28,16 +28,16 @@ double Nonconstcurve::dxp(double p){
 
 double Nonconstcurve::yp(double p){
     if(p < -3){
-        return -1; // first equation
+        return 0.5 * ((1)/(1+exp(-3*(p+6)))); // first equation
     } else{
-        return -1; // second equation
+        return 0.5 * (1/(1+exp(3*p))); // second equation
     }
 }
 
 double Nonconstcurve::dyp(double p){
     if(p < -3){
-        return -1; // first derivative of equation
+        return (1.5 * exp(-3*(p+6)))/((exp(-3*(p+6))+1) * (exp(-3*(p+6))+1)); // first derivative of equation
     } else{
-        return -1; // second derivative of equation
+        return (-1.5 * exp(3*p))/((exp(3*p)+1) * (exp(3*p)+1)); // second derivative of equation
     }
 }

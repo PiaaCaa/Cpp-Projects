@@ -13,7 +13,7 @@ protected:
 
 
 public:
-    Nonconstcurve(double y0, double yf, double x0); // Constructor
+    Nonconstcurve(double x0, double xf); // Constructor
     ~Nonconstcurve(){};
 
     void printNonconstcurve();

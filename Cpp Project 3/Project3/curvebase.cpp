@@ -50,8 +50,8 @@ double Curvebase::x(double s){
 
 
 double Curvebase::y(double s){
-    return -1.0;
-    //double p = newton(yp,dyp,s,(pmin+pmax)/2,e-2);
+    double p = newton(s,(pmin+pmax)/2.0,0.01); // create own newton or cmath?
+    return yp(p);//double p = newton(yp,dyp,s,(pmin+pmax)/2,e-2);
     //return yp(p);
 }
 
