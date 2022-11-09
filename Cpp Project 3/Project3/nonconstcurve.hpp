@@ -14,6 +14,7 @@ protected:
 
 public:
     Nonconstcurve(double x0, double xf); // Constructor
+    Nonconstcurve& operator=(const Nonconstcurve& curve);
     ~Nonconstcurve(){};
 
     void printNonconstcurve();

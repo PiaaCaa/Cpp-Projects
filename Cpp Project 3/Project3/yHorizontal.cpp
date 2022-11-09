@@ -5,11 +5,31 @@
 
 
 Yhorizontal::Yhorizontal(double x0, double xf, double y0){
-    pmin = x0;
-    pmax = xf;
+
     yconst = y0;
-    rev = false;
-    length = xf - x0;
+
+    if(x0 < xf){
+        rev=false;
+        pmin = x0;
+        pmax = xf;
+    } else {
+        rev=true;
+        pmin = xf;
+        pmax = x0;
+    }
+
+    length = abs(xf - x0);
+}
+
+Yhorizontal& Yhorizontal::operator=(const Yhorizontal& curve){
+    if(this != &curve){
+        pmin = curve.Pmin();
+        pmax = curve.Pmax();
+        rev = curve.Rev();
+        length = curve.Length();
+        yconst = curve.Yconst();
+    }
+    return *this;
 }
 
 void Yhorizontal::printYhorizontal(){
@@ -35,11 +55,15 @@ double Yhorizontal::dyp(double p){
 }
 
 double Yhorizontal::x(double s){
-    double p = pmin + s*length;
+    double p;
+    if (rev) p = pmax - s*length; // ????
+    else p = pmin + s*length;
     return xp(p);
 }
 
 double Yhorizontal::y(double s){
-    double p = pmin + s*length;
+    double p;
+    if (rev) p = pmax - s*length; // ????
+    else p = pmin + s*length;
     return yp(p);
 }

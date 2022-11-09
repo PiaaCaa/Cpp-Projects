@@ -16,9 +16,12 @@ private:
 
 public:
     Yhorizontal(double x0, double xf, double y0); // Constructor
+    Yhorizontal& operator=(const Yhorizontal& curve);
     ~Yhorizontal(){};
     double x(double s);
     double y(double s);
+
+    double Yconst() const {return yconst;};
 
     void printYhorizontal();
 

@@ -18,6 +18,17 @@ Curvebase::Curvebase(){
     // constructor
 }
 
+Curvebase& Curvebase::operator=(const Curvebase& curve){
+    if(this != &curve){
+        pmin = curve.Pmin();
+        pmax = curve.Pmax();
+        rev = curve.Rev();
+        length = curve.Length();
+    }
+    return *this;
+}
+
+
 Curvebase::~Curvebase(){};
 
 
@@ -43,14 +54,18 @@ double Curvebase::funcintegrate(double q){
 double Curvebase::x(double s){
     //if(false) exit(-1);
     //return -1.0;
-    double p = newton(s,(pmin+pmax)/2.0,0.01); // create own newton or cmath?
+    double p;
+    if(rev) p = newton(1.0-s,(pmin+pmax)/2.0,0.01);
+    else p = newton(s,(pmin+pmax)/2.0,0.01);
     return xp(p);
 
 }
 
 
 double Curvebase::y(double s){
-    double p = newton(s,(pmin+pmax)/2.0,0.01); // create own newton or cmath?
+    double p;
+    if(rev) p = newton(1.0-s,(pmin+pmax)/2.0,0.01);
+    else p = newton(s,(pmin+pmax)/2.0,0.01);
     return yp(p);//double p = newton(yp,dyp,s,(pmin+pmax)/2,e-2);
     //return yp(p);
 }

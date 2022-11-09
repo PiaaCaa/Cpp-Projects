@@ -9,8 +9,30 @@ Xvertical::Xvertical(double y0, double yf, double x0){
     pmin = y0;
     pmax = yf;
     xconst = x0;
-    rev = false;
-    length = yf - y0;
+
+    if(y0 < yf){
+        rev = false;
+        pmin = y0;
+        pmax = yf;
+    } else {
+        rev = true;
+        pmin = yf;
+        pmax = y0;
+    }
+
+    length = abs(yf - y0);
+}
+
+
+Xvertical& Xvertical::operator=(const Xvertical& curve){
+    if(this != &curve){
+        pmin = curve.Pmin();
+        pmax = curve.Pmax();
+        rev = curve.Rev();
+        length = curve.Length();
+        xconst = curve.Xconst();
+    }
+    return *this;
 }
 
 void Xvertical::printXvertical(){
@@ -36,11 +58,15 @@ double Xvertical::dyp(double p){
 }
 
 double Xvertical::x(double s){
-    double p = pmin + s*length;
+    double p;
+    if (rev) p = pmax - s*length; // ????
+    else p = pmin + s*length;
     return xp(p);
 }
 
 double Xvertical::y(double s){
-    double p = pmin + s*length;
+    double p;
+    if (rev) p = pmax - s*length; // ????
+    else p = pmin + s*length;
     return yp(p);
 }

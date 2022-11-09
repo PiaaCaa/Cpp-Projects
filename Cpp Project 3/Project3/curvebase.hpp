@@ -31,10 +31,16 @@ protected:
 
 public:
     Curvebase(); // Constructor
+    Curvebase& operator=(const Curvebase& curve);
     ~Curvebase(); // Destructor
-    //Curvebase(Functionpointer f); // Constructor
     double x(double s);
     double y(double s);
+
+    double Pmin() const {return pmin;};
+    double Pmax() const {return pmax;};
+    bool Rev() const {return rev;};
+    double Length() const {return length;};
+
     // .....
 
 };

@@ -8,9 +8,19 @@ Nonconstcurve::Nonconstcurve(double x0, double xf){
     pmin = x0; // QUESTION?
     pmax = xf; // QUESTION?
 
-    rev = false;
-    length = integrate(xf); // QUESTION?
+    if(x0 < xf){
+        pmin = x0;
+        pmax = xf;
+        rev = false;
+    } else {
+        pmin = xf;
+        pmax = x0;
+        rev = true;
+    }
+
+    length = integrate(pmax);
 }
+
 
 void Nonconstcurve::printNonconstcurve(){
     std::cout << pmin << pmax << std::endl;

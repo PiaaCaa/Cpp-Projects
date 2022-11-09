@@ -2,6 +2,7 @@
 #ifndef DOMAIN_HPP
 #define DOMAIN_HPP
 
+
 class Domain{
 
 private:
@@ -15,10 +16,11 @@ private:
     int n_;
     int m_;
 
-public:
-    Domain(const Curvebase s1, const Curvebase s2, const Curvebase s3, const Curvebase s4);
-    void generate_grid(int n, int m);
+    bool check_consistency();
 
+public:
+    Domain(Curvebase& s1, Curvebase& s2, Curvebase& s3, Curvebase& s4);
+    void generate_grid(int n, int m);
 };
 
 #endif
