@@ -34,21 +34,7 @@ int main()
 
 
 
-
-
     Domain mydomain = Domain(s1,s2,s3,s4);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
