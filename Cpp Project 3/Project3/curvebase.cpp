@@ -6,89 +6,59 @@ using namespace std;
 
 
 //Constructor
-Curvebase::Curvebase(){
-    //pmin = 0;
-    //pmax = 1;
-    //rev = false;
-    //length = 2;
-    // constructor
+Curvebase::Curvebase(){}
 
-//Constructor
-// Curvebase::Curvebase(Functionpointer x){
-    // constructor
-}
-
-Curvebase& Curvebase::operator=(const Curvebase& curve){
-    if(this != &curve){
-        pmin = curve.Pmin();
-        pmax = curve.Pmax();
-        rev = curve.Rev();
-        length = curve.Length();
-    }
-    return *this;
-}
+// Destructor
+Curvebase::~Curvebase(){}
 
 
-Curvebase::~Curvebase(){};
-
-
-//Curvebase::Curvebase(Functionpointer x){
-//    pmin = 0;
-//    pmax = 1;
-//    rev = false;
-//    length = 2;
-//}
-
+// Integrate function that integrates funcintegrate from pmin to p using the ASI function
 double Curvebase::integrate(double p){
-    double lp = 0;
-    lp = ASI(pmin, p,0.01);
-    return lp;
+    return ASI(pmin, p,0.01);
 }
 
 
+// Function to integrate / derivative
 double Curvebase::funcintegrate(double q){
     return sqrt(pow(dxp(q),2.0) + pow(dyp(q),2.0));
 }
 
-
+// Returns x value for given arc length s in [0,1]
 double Curvebase::x(double s){
-    //if(false) exit(-1);
-    //return -1.0;
     double p;
+    // Use newton method to find parameter p for given s. Use 1-s for a reversed curve
     if(rev) p = newton(1.0-s,(pmin+pmax)/2.0,0.01);
     else p = newton(s,(pmin+pmax)/2.0,0.01);
+    // Return the x value for given parameter p of the parameterised curve
     return xp(p);
-
 }
 
-
+// Returns y value for given arc length s in [0,1]
 double Curvebase::y(double s){
     double p;
+    // Use newton method to find parameter p for given s. Use 1-s for a reversed curve
     if(rev) p = newton(1.0-s,(pmin+pmax)/2.0,0.01);
     else p = newton(s,(pmin+pmax)/2.0,0.01);
-    return yp(p);//double p = newton(yp,dyp,s,(pmin+pmax)/2,e-2);
-    //return yp(p);
+    // Return the y value for given parameter p of the parameterised curve
+    return yp(p);
 }
 
 
+// Newton method with initial guess p0 and tolerance tol
 double Curvebase::newton(double s, double p0, double tol){
     double res=p0;
     while(abs(f(res,s)) > tol){
+        // Using Newton scheme to find root
         res = res - f(res,s)/funcintegrate(res);
     }
     return res;
 }
 
-
+// Function l(p) - s * l(pmax) that is used to find parameter p
 double Curvebase::f(double p, double s){
     return integrate(p) - s*length;
 }
 
-
-//double f(){
-//    double res;
-//    res = c + integrate();
-//}
 
 
 // Use Simpsons rule to estimate Integral value
@@ -112,4 +82,11 @@ double Curvebase::ASI(double a, double  b, double tol){
         return I2;
     }
     return ASI(a, (a+b)/2, tol/2) + ASI((a+b)/2, b, tol/2);
+}
+
+
+// Print parameters using cout
+void Curvebase::printCurve(){
+    std::cout << pmin << pmax << std::endl;
+    std::cout << rev << length << std::endl;
 }

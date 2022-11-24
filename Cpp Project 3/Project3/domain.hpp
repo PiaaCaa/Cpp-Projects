@@ -18,6 +18,9 @@ private:
 
     bool check_consistency();
 
+    double phi1(double s){return 1-s;};
+    double phi2(double s){return s;};
+
 public:
     Domain(Curvebase& s1, Curvebase& s2, Curvebase& s3, Curvebase& s4);
     void generate_grid(int n, int m);

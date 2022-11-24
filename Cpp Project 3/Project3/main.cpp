@@ -19,8 +19,8 @@ int main()
 
     // Yhorizontal s1 = Yhorizontal(0.0, 5.0, 0.0);
     Xvertical s2 = Xvertical(0.0, 5.0, 5.0);
-    Yhorizontal s3 = Yhorizontal(5.0, 0.0, 5.0);
-    Xvertical s4 = Xvertical(5.0, 0.0, 0.0);
+    Yhorizontal s3 = Yhorizontal(5.0, -10.0, 5.0);
+    Xvertical s4 = Xvertical(5.0, 0.0, -10.0);
 
     Nonconstcurve s1 = Nonconstcurve(-10.0, 5.0); // Not consistent???
 

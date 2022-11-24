@@ -4,27 +4,23 @@
 
 class Yhorizontal: public Curvebase{
 protected:
-    double xp(double p);
-    double yp(double p);
-    double dxp(double p);
-    double dyp(double p);
+    double xp(double p); // Parameterised curve in p. Returns x-value for given p
+    double yp(double p); // Parameterised curve in p. Returns y-value for given p
+    double dxp(double p); // Parameterised curve in p. Returns derivative in x for given p
+    double dyp(double p); // Parameterised curve in p. Returns derivative in y for given p
 
-    //double integrate(double p); // arc length integral
 
 private:
-    double yconst;
+    double yconst; // Parameter that stores the constant y-value of the horizontal line
 
 public:
-    Yhorizontal(double x0, double xf, double y0); // Constructor
-    Yhorizontal& operator=(const Yhorizontal& curve);
-    ~Yhorizontal(){};
-    double x(double s);
-    double y(double s);
+    Yhorizontal(double x0, double xf, double y0); // Constructor for horizontal line going from x0 to xf at y-value = y0
+    Yhorizontal& operator=(const Yhorizontal& curve); // Copy assignement
+    ~Yhorizontal(){}; // Destructor
+    double x(double s); // Returns x value of curve for given arc length parameter s in [0,1]
+    double y(double s); // Returns y value of curve for given arc length parameter s in [0,1]
 
-    double Yconst() const {return yconst;};
-
-    void printYhorizontal();
-
+    double Yconst() const {return yconst;}; // Returns the constant y-value of the horizontal line
 
     // .....
 
