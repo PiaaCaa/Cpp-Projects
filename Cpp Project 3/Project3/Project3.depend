@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1669290842 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\main.cpp
+1669388082 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\main.cpp
 	<iostream>
 	"curvebase.hpp"
 	"xvertical.hpp"
@@ -8,20 +8,20 @@
 	"domain.hpp"
 	<cstdio>
 
-1669296348 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.hpp
+1669384580 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.hpp
 
 1669296348 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.cpp
 	<iostream>
 	<cmath>
 	"curvebase.hpp"
 
-1669296212 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\xvertical.cpp
+1669386950 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\xvertical.cpp
 	<iostream>
 	<cmath>
 	"curvebase.hpp"
 	"xvertical.hpp"
 
-1669292110 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\xvertical.hpp
+1669384204 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\xvertical.hpp
 	"curvebase.hpp"
 
 1667555876 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.cpp
@@ -32,7 +32,7 @@
 1669292112 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\yhorizontal.hpp
 	"curvebase.hpp"
 
-1669296046 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\yhorizontal.cpp
+1669386950 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\yhorizontal.cpp
 	<iostream>
 	<cmath>
 	"curvebase.hpp"
@@ -47,11 +47,11 @@
 1669292112 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\nonconstcurve.hpp
 	"curvebase.hpp"
 
-1668013134 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\domain.cpp
+1669387794 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\domain.cpp
 	"domain.hpp"
 	<iostream>
 	<cmath>
 
-1669297170 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\domain.hpp
+1669380804 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\domain.hpp
 	"curvebase.hpp"
 

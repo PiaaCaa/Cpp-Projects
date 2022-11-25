@@ -21,6 +21,7 @@ Xvertical::Xvertical(double y0, double yf, double x0){
         pmax = y0;
     }
 
+
     // Length of the curve
     length = abs(yf - y0);
 }
@@ -74,4 +75,10 @@ double Xvertical::y(double s){
     if (rev) p = pmax - s*length;
     else p = pmin + s*length;
     return yp(p);
+}
+
+void Xvertical::printCurve(){
+    std::cout << pmin << pmax << std::endl;
+    std::cout << rev << length << std::endl;
+    std::cout << "TEST!" << std::endl;
 }

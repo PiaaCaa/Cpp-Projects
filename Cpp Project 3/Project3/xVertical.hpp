@@ -22,6 +22,7 @@ public:
 
     double Xconst() const {return xconst;}; // Returns the constant x-value of the vertical line
 
+    void printCurve();
     // .....
 
 };

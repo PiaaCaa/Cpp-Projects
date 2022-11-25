@@ -34,8 +34,8 @@ public:
     Curvebase(); // Constructor
     ~Curvebase(); // Destructor
 
-    double x(double s); // Returns x value of curve for given arc length parameter s in [0,1]
-    double y(double s); // Returns y value of curve for given arc length parameter s in [0,1]
+    virtual double x(double s); // Returns x value of curve for given arc length parameter s in [0,1]
+    virtual double y(double s); // Returns y value of curve for given arc length parameter s in [0,1]
 
     double Pmin() const {return pmin;}; // Returns the minimum value p of the parameterised curve
     double Pmax() const {return pmax;}; // Returns the maximum value p of the parameterised curve

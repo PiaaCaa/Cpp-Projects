@@ -9,34 +9,30 @@
 using namespace std;
 
 
-// double func1()
-
-
 
 int main()
 {
 
 
-    // Yhorizontal s1 = Yhorizontal(0.0, 5.0, 0.0);
+    Yhorizontal s1 = Yhorizontal(0.0, 5.0, 0.0);
     Xvertical s2 = Xvertical(0.0, 5.0, 5.0);
-    Yhorizontal s3 = Yhorizontal(5.0, -10.0, 5.0);
-    Xvertical s4 = Xvertical(5.0, 0.0, -10.0);
+    Yhorizontal s3 = Yhorizontal(5.0, 0.0, 5.0);
+    Xvertical s4 = Xvertical(5.0, 0.0, 0.0);
 
-    Nonconstcurve s1 = Nonconstcurve(-10.0, 5.0); // Not consistent???
-
-    cout << s1.x(0) << endl;
-
-    cout << s1.x(1) << endl;
-
-    cout << s1.y(0) << endl;
-
-    cout << s1.y(1) << endl;
-
-
-
-
+    // Nonconstcurve s1 = Nonconstcurve(-10.0, 5.0); // Not consistent???
 
     Domain mydomain = Domain(s1,s2,s3,s4);
+
+
+    mydomain.sides[3]->y(0);
+
+    cout << s4.y(0) << endl;
+
+    cout << "------------" << endl;
+
+    mydomain.generate_grid(1,2);
+
+    mydomain.printGrid();
 
 
 

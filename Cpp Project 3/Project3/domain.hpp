@@ -6,12 +6,11 @@
 class Domain{
 
 private:
-    Curvebase* sides[4];
+    // Curvebase* sides[4]; <-- CHANGE!!!
 
     double* x_ = nullptr;
     double* y_ = nullptr;
 
-    // Question: Phi?
 
     int n_;
     int m_;
@@ -22,8 +21,11 @@ private:
     double phi2(double s){return s;};
 
 public:
+
+    Curvebase* sides[4];
     Domain(Curvebase& s1, Curvebase& s2, Curvebase& s3, Curvebase& s4);
     void generate_grid(int n, int m);
+    void printGrid();
 };
 
 #endif
