@@ -13,96 +13,69 @@ using namespace std;
 int main()
 {
 
+    // Generate four curves that define the grid
+    Nonconstcurve s1 = Nonconstcurve(-10.0, 5.0);
+    Xvertical s2 = Xvertical(0.0, 3.0, 5.0);
+    Yhorizontal s3 = Yhorizontal(5.0, -10.0, 3.0);
+    Xvertical s4 = Xvertical(3.0, 0.0, -10.0);
 
-    Yhorizontal s1 = Yhorizontal(0.0, 5.0, 0.0);
-    Xvertical s2 = Xvertical(0.0, 5.0, 5.0);
-    Yhorizontal s3 = Yhorizontal(5.0, 0.0, 5.0);
-    Xvertical s4 = Xvertical(5.0, 0.0, 0.0);
-
-    // Nonconstcurve s1 = Nonconstcurve(-10.0, 5.0); // Not consistent???
-
+    // Generate domain
     Domain mydomain = Domain(s1,s2,s3,s4);
 
+    // Generate grid with size of 50x20
+    mydomain.generate_grid(50,20);
 
-    mydomain.sides[3]->y(0);
-
-    cout << s4.y(0) << endl;
 
     cout << "------------" << endl;
 
-    mydomain.generate_grid(1,2);
 
-    mydomain.printGrid();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    return 0;
-
-
-
-    //Yhorizontal ycurve = Yhorizontal(-10.0, 5.0, 3.0);
-
-    Nonconstcurve ycurve = Nonconstcurve(-10.0, 5.0);
-
-    int len = (int) 1/0.01 + 1;
-    double p[len];
-    double curve[2*len];
-
+    // Save the grid to the file 'grid_out.bin'
     int counter = 0;
-    for(double i=0; i<=1.01; i+=0.01){
-        p[counter] = i;
-
-        //cout << counter << ", i: " << i << endl;
-        counter++;
-    }
-
-
-    counter = 0;
-    for(int i=0; i<2*len-1;i+=2){
-        curve[i] = ycurve.x(p[counter]);
-        curve[i+1] = ycurve.y(p[counter]);
-        //cout << ycurve.y(p[counter]) << endl;
+    int len = (mydomain.M_()+1)*(mydomain.N_()+1);
+    double grid[2*len];
+    for(int i=0; i<2*len;i+=2){
+        grid[i] = mydomain.X_()[counter];
+        grid[i+1] = mydomain.Y_()[counter];
         counter+=1;
     }
 
     FILE *fp;
-    fp =fopen("outfile.bin","wb");
-    fwrite(curve,sizeof(double),2*len,fp);
+    fp =fopen("grid_out.bin","wb");
+    fwrite(grid,sizeof(double),2*len,fp);
     fclose(fp);
 
 
-    return 0;
 
-    double n=3;
-    double m=3;
+    // Save the curvebases to the file 'curve_out.bin'
+    double stepsize = 0;
+    len = (4*2*100);
+    double curves[2*len];
 
-    double myvec[9];
+    curves[200] = 1.0;
 
-    for(int i = 0; i < n*m; i++){
-        myvec[i] = 5.0;
+    for(int i=0; i<2*100;i+=2){
+        curves[i] = mydomain.Sides()[0]->x(stepsize);
+        curves[i+1] = mydomain.Sides()[0]->y(stepsize);
+
+        curves[i+200] = mydomain.Sides()[1]->x(stepsize);
+        curves[i+1+200] = mydomain.Sides()[1]->y(stepsize);
+
+        curves[i+400] = mydomain.Sides()[2]->x(stepsize);
+        curves[i+1+400] = mydomain.Sides()[2]->y(stepsize);
+
+        curves[i+600] = mydomain.Sides()[3]->x(stepsize);
+        curves[i+1+600] = mydomain.Sides()[3]->y(stepsize);
+
+        stepsize+=(1.0/(100.0));
     }
 
-    for(int i = 0; i < n*m; i++){
-        cout << myvec[i] << endl;
-    }
+    FILE *curvefile;
+    curvefile =fopen("curve_out.bin","wb");
+    fwrite(curves,sizeof(double),2*len,curvefile);
+    fclose(curvefile);
+
+    cout << "Grid saved to 'grid_out.bin'!" << endl;
 
 
-    //FILE *fp;
-    //fp =fopen("outfile.bin","wb");
-    //fwrite(myvec,sizeof(double),m*n,fp);
-    //fclose(fp);
     return 0;
 }
