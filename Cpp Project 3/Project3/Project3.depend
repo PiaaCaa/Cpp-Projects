@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1669460712 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\main.cpp
+1669461870 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\main.cpp
 	<iostream>
 	"curvebase.hpp"
 	"xvertical.hpp"
@@ -8,14 +8,14 @@
 	"domain.hpp"
 	<cstdio>
 
-1669384580 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.hpp
+1669466926 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.hpp
 
 1669296348 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.cpp
 	<iostream>
 	<cmath>
 	"curvebase.hpp"
 
-1669386950 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\xvertical.cpp
+1669463038 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\xvertical.cpp
 	<iostream>
 	<cmath>
 	"curvebase.hpp"
@@ -52,6 +52,6 @@
 	<iostream>
 	<cmath>
 
-1669461666 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\domain.hpp
+1669466926 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\domain.hpp
 	"curvebase.hpp"
 

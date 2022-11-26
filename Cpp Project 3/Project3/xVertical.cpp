@@ -80,5 +80,4 @@ double Xvertical::y(double s){
 void Xvertical::printCurve(){
     std::cout << pmin << pmax << std::endl;
     std::cout << rev << length << std::endl;
-    std::cout << "TEST!" << std::endl;
 }

@@ -26,11 +26,10 @@ Domain::Domain(Curvebase& s1, Curvebase& s2, Curvebase& s3, Curvebase& s4){
     }
 }
 
-
-// Destructor
 Domain::~Domain(){
     delete[] x_;
     delete[] y_;
+    delete[] sides;
 }
 
 // Consistency check
@@ -48,7 +47,6 @@ bool Domain::check_consistency(){
     return true;
 }
 
-// Generate grid
 void Domain::generate_grid(int n, int m){
     if(m < 1 || n < 1) exit(1);
     if(m_ > 0){
@@ -90,7 +88,7 @@ void Domain::generate_grid(int n, int m){
     cout << "Grid generated!" << endl;
 }
 
-// Print function
+
 void Domain::printGrid(){
     cout << "x:" << endl;
     for(int i = 0; i <= n_; ++i){
