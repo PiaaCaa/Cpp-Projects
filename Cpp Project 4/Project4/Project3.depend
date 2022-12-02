@@ -1,0 +1,129 @@
+# depslib dependency file v1.0
+1669461870 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\main.cpp
+	<iostream>
+	"curvebase.hpp"
+	"xvertical.hpp"
+	"yhorizontal.hpp"
+	"nonconstcurve.hpp"
+	"domain.hpp"
+	<cstdio>
+
+1669466926 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.hpp
+
+1669296348 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+
+1669463038 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\xvertical.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+	"xvertical.hpp"
+
+1669384204 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\xvertical.hpp
+	"curvebase.hpp"
+
+1667555876 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\curvebase.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+
+1669292112 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\yhorizontal.hpp
+	"curvebase.hpp"
+
+1669386950 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\yhorizontal.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+	"yhorizontal.hpp"
+
+1669296350 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\nonconstcurve.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+	"nonconstcurve.hpp"
+
+1669292112 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\nonconstcurve.hpp
+	"curvebase.hpp"
+
+1669461642 source:d:\uni\gitkraken\cpp-projects\cpp project 3\project3\domain.cpp
+	"domain.hpp"
+	<iostream>
+	<cmath>
+
+1669466926 d:\uni\gitkraken\cpp-projects\cpp project 3\project3\domain.hpp
+	"curvebase.hpp"
+
+1669296348 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\curvebase.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+
+1669971308 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\curvebase.hpp
+
+1669973546 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\domain.cpp
+	"domain.hpp"
+	<iostream>
+	<cmath>
+
+1669974842 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\domain.hpp
+	<memory>
+	<vector>
+	"curvebase.hpp"
+
+1669978184 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\main.cpp
+	<iostream>
+	<memory>
+	"curvebase.hpp"
+	"xvertical.hpp"
+	"yhorizontal.hpp"
+	"nonconstcurve.hpp"
+	"domain.hpp"
+	"GFkt.hpp"
+	"matrix.hpp"
+	<cstdio>
+
+1669384204 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\xvertical.hpp
+	"curvebase.hpp"
+
+1669292112 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\yhorizontal.hpp
+	"curvebase.hpp"
+
+1669292112 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\nonconstcurve.hpp
+	"curvebase.hpp"
+
+1669296350 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\nonconstcurve.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+	"nonconstcurve.hpp"
+
+1669386950 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\yhorizontal.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+	"yhorizontal.hpp"
+
+1669467386 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\xvertical.cpp
+	<iostream>
+	<cmath>
+	"curvebase.hpp"
+	"xvertical.hpp"
+
+1669976426 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\matrix.cpp
+	<iostream>
+	<cmath>
+	"matrix.hpp"
+
+1669976426 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\matrix.hpp
+
+1669978140 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\gfkt.cpp
+	<iostream>
+	<cmath>
+	"gfkt.hpp"
+
+1669978506 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\gfkt.hpp
+	"domain.hpp"
+	"matrix.hpp"
+

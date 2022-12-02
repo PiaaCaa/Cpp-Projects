@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Project3" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Project3" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Project3" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="GFkt.cpp" />
+		<Unit filename="GFkt.hpp" />
+		<Unit filename="curvebase.cpp" />
+		<Unit filename="curvebase.hpp" />
+		<Unit filename="domain.cpp" />
+		<Unit filename="domain.hpp" />
+		<Unit filename="main.cpp" />
+		<Unit filename="matrix.cpp" />
+		<Unit filename="matrix.hpp" />
+		<Unit filename="nonconstcurve.cpp" />
+		<Unit filename="nonconstcurve.hpp" />
+		<Unit filename="xvertical.cpp" />
+		<Unit filename="xvertical.hpp" />
+		<Unit filename="yhorizontal.cpp" />
+		<Unit filename="yhorizontal.hpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
