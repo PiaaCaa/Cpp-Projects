@@ -210,9 +210,10 @@ void Matrix::fillMatrix(double *a, int arraySize){
     // Check if dimension align
     if ( rows*cols == arraySize ) {
         for (int i= 0 ; i< rows ; i++){
-            for(int j = 0 ; j < cols ; j++)
+            for(int j = 0 ; j < cols ; j++) {
                 // Fill value with value given by the vector
-                matx[i][j]= a[j*cols+i];
+                matx[i][j]= a[j*rows+i];
+            }
         }
     } else
 

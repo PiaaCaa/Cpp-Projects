@@ -19,7 +19,9 @@ public:
     GFkt operator*(const GFkt& U) const;
     GFkt operator*(const double p) const;
 
-    void D0x(GFkt *dx, GFkt *dy) const;
+    void D0xy(GFkt *dx, GFkt *dy) const;
+
+    void D0xyold(GFkt *dx, GFkt *dy) const;
 
     GFkt Laplacian() const;
 

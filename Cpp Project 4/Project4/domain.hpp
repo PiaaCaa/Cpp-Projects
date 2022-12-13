@@ -27,9 +27,6 @@ private:
     // Checks the consistency of the border of the domain
     bool check_consistency();
 
-    // Help interpolation functions for generate_grid
-    double phi1(double s) const {return 1-s;};
-    double phi2(double s) const {return s;};
 
 public:
     // Constructor
@@ -40,6 +37,10 @@ public:
     void generate_grid(int n, int m);
     // Prints the grid using cout
     void printGrid();
+
+    // Help interpolation functions for generate_grid
+    double phi1(double s) const {return 1-s;};
+    double phi2(double s) const {return s;};
 
     // Getter Functions
     shared_ptr<Curvebase>* Sides(){return sides;};
