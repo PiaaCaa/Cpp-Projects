@@ -62,17 +62,17 @@
 
 1669971308 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\curvebase.hpp
 
-1669973546 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\domain.cpp
+1671015928 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\domain.cpp
 	"domain.hpp"
 	<iostream>
 	<cmath>
 
-1670853508 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\domain.hpp
+1671015786 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\domain.hpp
 	<memory>
 	<vector>
 	"curvebase.hpp"
 
-1670943352 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\main.cpp
+1671018086 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\main.cpp
 	<iostream>
 	<memory>
 	<cmath>
@@ -119,12 +119,12 @@
 
 1669976426 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\matrix.hpp
 
-1670943964 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\gfkt.cpp
+1671018170 source:d:\uni\gitkraken\cpp-projects\cpp project 4\project4\gfkt.cpp
 	<iostream>
 	<cmath>
-	"gfkt.hpp"
+	"GFkt.hpp"
 
-1670937886 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\gfkt.hpp
+1671016692 d:\uni\gitkraken\cpp-projects\cpp project 4\project4\gfkt.hpp
 	"domain.hpp"
 	"matrix.hpp"
 

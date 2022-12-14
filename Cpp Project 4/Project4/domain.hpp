@@ -15,7 +15,7 @@ private:
     shared_ptr<Curvebase> sides[4];
 
 
-    // Double arrays that will store the coordinates of the grid points
+    // Vectors that will store the coordinates of the grid points
     vector<double> x_;
     vector<double> y_;
 

@@ -29,7 +29,8 @@ Domain::Domain(shared_ptr<Curvebase> s1, shared_ptr<Curvebase> s2, shared_ptr<Cu
 
 // Destructor
 Domain::~Domain(){
-    //?
+    x_.clear();
+    y_.clear();
 }
 
 // Consistency check
@@ -49,6 +50,7 @@ bool Domain::check_consistency(){
 
 // Generate grid
 void Domain::generate_grid(int n, int m){
+    // If an old grid already exists, change the sizes of the vectors and overwrite its data with the new grid
     if(m < 1 || n < 1) exit(1);
     if(m_ != m && n_ != n){
         x_.resize((m+1) * (n+1));

@@ -12,79 +12,62 @@
 
 using namespace std;
 
-
+// Function u(x,y) as described in the exercise
 double func(double x, double y){
-    //return x*y;
-    return sin((x/10.0)* (x/10.0)) * cos(x/10.0) + y;
+    return sin((x*x)/100.0) * cos(x/10.0) + y;
 
 }
+
 
 
 int main()
 {
 
-    /*
-    shared_ptr<Yhorizontal> s1 = make_shared<Yhorizontal>(0.0, 5.0, 0.0);
-    shared_ptr<Xvertical> s2 = make_shared<Xvertical>(0.0, 5.0, 5.0);
-    shared_ptr<Yhorizontal> s3 = make_shared<Yhorizontal>(5.0, 0.0, 5.0);
-    shared_ptr<Xvertical> s4 = make_shared<Xvertical>(5.0, 0.0, 0.0);
-    */
+    // Defining the domain as described by the exercise
     shared_ptr<Nonconstcurve> s1 = make_shared<Nonconstcurve>(-10.0, 5.0);
     shared_ptr<Xvertical> s2 = make_shared<Xvertical>(0.0, 3.0, 5.0);
     shared_ptr<Yhorizontal> s3 = make_shared<Yhorizontal>(5.0, -10.0, 3.0);
     shared_ptr<Xvertical> s4 = make_shared<Xvertical>(3.0, 0.0, -10.0);
 
+
     // Generate domain
     shared_ptr<Domain> mydomain = make_shared<Domain>(s1,s2,s3,s4);
 
+    // Choose size of the grid to be generated
     int N = 50;
     int M = 20;
     mydomain->generate_grid(N,M);
 
-    //mydomain->printGrid();
-
+    // Define grid functions, all on the same domain to allow for the operations to work
     GFkt gridfun(mydomain);
     GFkt gridfundx(mydomain);
     GFkt gridfundy(mydomain);
 
 
+    // Make a matrix and fill it with the function values of u for the given grid points
     Matrix m1(N+1,M+1);
 
     double v1[(N+1)*(M+1)];
-    for(int i=0; i< (N+1); i++){
-        for(int j=0; j< (M+1); j++){
+    for(int j=0; j< (M+1); j++){
+        for(int i=0; i< (N+1); i++){
             v1[j*(N+1)+i] = func(mydomain->X_()[j*(N+1)+i], mydomain->Y_()[j*(N+1)+i]);
-            //cout << "Value: " << func(mydomain->X_()[i], mydomain->Y_()[j]) << endl;
-
         }
     }
-
-    cout << "vector generated" << endl;
-
-    //double v3[9] = {0.0, 0.0, 0.0, 0.0, 6.25, 12.5, 0.0, 12.5, 25.0};
     m1.fillMatrix(v1, (N+1)*(M+1));
+    gridfun.setFunction(m1);
+
+    cout << "Gridfunction for u generated!" << endl;
 
     cout << "---------------" << endl;
 
-    gridfun.u = m1;
-
-
+    // Calculate the partial derivatives and store them as Gridfunctions gridfundx and gridfundy
     gridfun.D0xy(&gridfundx, &gridfundy);
-    //GFkt res = gridfun + gridfun2;
-    //GFkt res = gridfun * 3.0;
-    //gridfun.printGFkt();
-    //gridfundx.printGFkt();
-    //gridfundy.printGFkt();
-    // GFkt gridfunlaplace = gridfun.Laplacian();
 
-
-
-    // return 0;
-
+    // Get the laplacian of u and store it as a Gridfunction gridfunlaplace
     GFkt gridfunlaplace = gridfun.Laplacian();
 
 
-        cout << "------------" << endl;
+    cout << "------------" << endl;
 
 
     // Save the grid to the file 'grid_out.bin'
@@ -111,7 +94,7 @@ int main()
     double gridu[len];
     for(int i=0; i<mydomain->N_()+1;i++){
         for(int j=0; j<mydomain->M_()+1; j++){
-            gridu[j*(mydomain->N_()+1)+i] = gridfun.u.Matx()[i][j];
+            gridu[j*(mydomain->N_()+1)+i] = gridfun.U().Matx()[i][j];
         }
     }
 
@@ -128,7 +111,7 @@ int main()
     double griddux[len];
     for(int i=0; i<mydomain->N_()+1;i++){
         for(int j=0; j<mydomain->M_()+1; j++){
-            griddux[j*(mydomain->N_()+1)+i] = gridfundx.u.Matx()[i][j];
+            griddux[j*(mydomain->N_()+1)+i] = gridfundx.U().Matx()[i][j];
         }
     }
 
@@ -146,7 +129,7 @@ int main()
     double gridduy[len];
     for(int i=0; i<mydomain->N_()+1;i++){
         for(int j=0; j<mydomain->M_()+1; j++){
-            gridduy[j*(mydomain->N_()+1)+i] = gridfundy.u.Matx()[i][j];
+            gridduy[j*(mydomain->N_()+1)+i] = gridfundy.U().Matx()[i][j];
         }
     }
 
@@ -163,7 +146,7 @@ int main()
     double gridlaplace[len];
     for(int i=0; i<mydomain->N_()+1;i++){
         for(int j=0; j<mydomain->M_()+1; j++){
-            gridlaplace[j*(mydomain->N_()+1)+i] = gridfunlaplace.u.Matx()[i][j];
+            gridlaplace[j*(mydomain->N_()+1)+i] = gridfunlaplace.U().Matx()[i][j];
         }
     }
 
@@ -206,81 +189,5 @@ int main()
 
     cout << "Saved curvebases to <curve_out.bin>!" << endl;
 
-
-
-
-
-
-
-
-
-
     return 0;
-    /*
-    // Generate four curves that define the grid
-    shared_ptr<Nonconstcurve> s1 = make_shared<Nonconstcurve>(-10.0, 5.0);
-    shared_ptr<Xvertical> s2 = make_shared<Xvertical>(0.0, 3.0, 5.0);
-    shared_ptr<Yhorizontal> s3 = make_shared<Yhorizontal>(5.0, -10.0, 3.0);
-    shared_ptr<Xvertical> s4 = make_shared<Xvertical>(3.0, 0.0, -10.0);
-
-    // Generate domain
-    Domain mydomain = Domain(s1,s2,s3,s4);
-
-    // Generate grid with size of 50x20
-    mydomain.generate_grid(50,20);
-
-
-    cout << "------------" << endl;
-
-
-    // Save the grid to the file 'grid_out.bin'
-    int counter = 0;
-
-    int len = (mydomain.M_()+1)*(mydomain.N_()+1);
-    double grid[2*len];
-    for(int i=0; i<2*len;i+=2){
-        grid[i] = mydomain.X_()[counter];
-        grid[i+1] = mydomain.Y_()[counter];
-        counter+=1;
-    }
-
-    FILE *fp;
-    fp =fopen("grid_out.bin","wb");
-    fwrite(grid,sizeof(double),2*len,fp);
-    fclose(fp);
-
-
-
-    // Save the curvebases to the file 'curve_out.bin'
-    double stepsize = 0;
-    len = (4*2*100);
-    double curves[2*len];
-
-    curves[200] = 1.0;
-
-    for(int i=0; i<2*100;i+=2){
-        curves[i] = mydomain.Sides()[0]->x(stepsize);
-        curves[i+1] = mydomain.Sides()[0]->y(stepsize);
-
-        curves[i+200] = mydomain.Sides()[1]->x(stepsize);
-        curves[i+1+200] = mydomain.Sides()[1]->y(stepsize);
-
-        curves[i+400] = mydomain.Sides()[2]->x(stepsize);
-        curves[i+1+400] = mydomain.Sides()[2]->y(stepsize);
-
-        curves[i+600] = mydomain.Sides()[3]->x(stepsize);
-        curves[i+1+600] = mydomain.Sides()[3]->y(stepsize);
-
-        stepsize+=(1.0/(100.0));
-    }
-
-    FILE *curvefile;
-    curvefile =fopen("curve_out.bin","wb");
-    fwrite(curves,sizeof(double),2*len,curvefile);
-    fclose(curvefile);
-
-    cout << "Grid saved to 'grid_out.bin'!" << endl;
-
-    return 0;
-    */
 }
